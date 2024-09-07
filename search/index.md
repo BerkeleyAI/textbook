@@ -6,9 +6,9 @@ has_children: true
 
 # Search
 
-Author: Nikhil Sharma
+_Author: Nikhil Sharma_
 
-Edited by: Matei Gardea
+_Edited by: Matei Gardea_
 
 Credit (Machine Learning and Logic notes): Some sections adapted from the textbook *Artificial Intelligence: A Modern Approach*.
 
