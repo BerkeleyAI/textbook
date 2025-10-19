@@ -100,7 +100,7 @@ A couple of important highlights from the discussion above before we proceed: fo
 
 ## 1.4.5 Dominance
 
-Now that we've established the property of admissibility and its role in maintaining the optimality of A* search, we can return to our original problem of creating "good" heuristics, and how to tell if one heuristic is better than another. The standard metric for this is that of **dominance**. If heuristic $$$$ is dominant over heuristic $$b$$, then the estimated goal distance for $$a$$ is greater than the estimated goal distance for $$b$$ for every node in the state space graph. Mathematically,
+Now that we've established the property of admissibility and its role in maintaining the optimality of A* search, we can return to our original problem of creating "good" heuristics, and how to tell if one heuristic is better than another. The standard metric for this is that of **dominance**. If heuristic $$a$$ is dominant over heuristic $$b$$, then the estimated goal distance for $$a$$ is greater than the estimated goal distance for $$b$$ for every node in the state space graph. Mathematically,
 
 $$\forall n: h_a(n) \geq h_b(n)$$
 
