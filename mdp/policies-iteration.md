@@ -22,7 +22,7 @@ Value iteration can be quite slow. At each iteration, we must update the values 
      $$\pi_{i+1}(s) = \underset{a}{\operatorname{argmax}}\: \sum_{s'}T(s, a, s')[R(s, a, s') + \gamma V^{\pi_i}(s')]$$ 
      If $$\pi_{i+1} = \pi_i$$, the algorithm has converged, and we can conclude that $$\pi_{i+1} = \pi_i = \pi^*$$.
 
-Let's run through our racecar example one last time (getting tired of it yet?) to see if we get the same policy using policy iteration as we did with value iteration. Recall that we were using a discount factor of $$\gamma = 0.5$$.
+Let's run through our racecar example one last time (getting tired of it yet?) to see if we get the same policy using policy iteration as we did with value iteration. Recall that we were using a discount factor of $$\gamma = 0.8$$.
 
 <img src="{{ site.baseurl }}/assets/images/race-car.png" alt="Racecar Example" />
 
@@ -35,26 +35,26 @@ We start with an initial policy of *Always go slow*:
 Because terminal states have no outgoing actions, no policy can assign a value to one. Hence, it's reasonable to disregard the state *overheated* from consideration as we have done, and simply assign $$\forall i, \:\: V^{\pi_i}(s) = 0$$ for any terminal state $$s$$. The next step is to run a round of policy evaluation on $$\pi_0$$:
 
 $$\begin{aligned}
-V^{\pi_0}(cool) &= 1 \cdot [1 + 0.5 \cdot V^{\pi_0}(cool)] \\
-V^{\pi_0}(warm) &= 0.5 \cdot [1 + 0.5 \cdot V^{\pi_0}(cool)] \\
-                &+ 0.5 \cdot [1 + 0.5 \cdot V^{\pi_0}(warm)] 
+V^{\pi_0}(cool) &= 1 \cdot [1 + 0.8 \cdot V^{\pi_0}(cool)] \\
+V^{\pi_0}(warm) &= 0.5 \cdot [1 + 0.8 \cdot V^{\pi_0}(cool)] \\
+                &+ 0.5 \cdot [1 + 0.8 \cdot V^{\pi_0}(warm)]
 \end{aligned}$$
 
 Solving this system of equations for $$V^{\pi_0}(cool)$$ and $$V^{\pi_0}(warm)$$ yields:
 
-|  | **cool** | **warm** | **overheated** |  
-|---|---|---|---|  
-| $$V^{\pi_0}$$ | 2 | 2 | 0 |
+|  | **cool** | **warm** | **overheated** |
+|---|---|---|---|
+| $$V^{\pi_0}$$ | 5 | 5 | 0 |
 
 We can now run policy extraction with these values:
 
 $$\begin{aligned}
-\pi_{1}(cool) &= {\operatorname{argmax}}\{slow: 1 \cdot [1 + 0.5 \cdot 2],\:\: fast: 0.5 \cdot [2 + 0.5 \cdot 2] + 0.5 \cdot [2 + 0.5 \cdot 2]\} \\
-&= {\operatorname{argmax}}\{slow: 2,\:\: fast: 3\} \\
+\pi_{1}(cool) &= {\operatorname{argmax}}\{slow: 1 \cdot [1 + 0.8 \cdot 5],\:\: fast: 0.5 \cdot [2 + 0.8 \cdot 5] + 0.5 \cdot [2 + 0.8 \cdot 5]\} \\
+&= {\operatorname{argmax}}\{slow: 5,\:\: fast: 6\} \\
 &= \boxed{fast}\\
-\pi_{1}(warm) &= {\operatorname{argmax}}\{slow: 0.5 \cdot [1 + 0.5 \cdot 2] + 0.5 \cdot [1 + 0.5 \cdot 2] ,\:\: fast: 1 \cdot [-10 + 0.5 \cdot 0]\} \\
-&= {\operatorname{argmax}}\{slow: 2,\:\: fast: -10\} \\
-&= \boxed{slow} 
+\pi_{1}(warm) &= {\operatorname{argmax}}\{slow: 0.5 \cdot [1 + 0.8 \cdot 5] + 0.5 \cdot [1 + 0.8 \cdot 5] ,\:\: fast: 1 \cdot [-10 + 0.8 \cdot 0]\} \\
+&= {\operatorname{argmax}}\{slow: 5,\:\: fast: -10\} \\
+&= \boxed{slow}
 \end{aligned}$$
 
 Running policy iteration for a second round yields $$\pi_2(cool) = fast$$ and $$\pi_2(warm) = slow$$. Since this is the same policy as $$\pi_1$$, we can conclude that $$\pi_1 = \pi_2 = \pi^*$$. Verify this for practice!
