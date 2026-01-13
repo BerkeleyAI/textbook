@@ -44,7 +44,7 @@ where the first inequality follows from the general inequality introduced above,
 
 Because we just proved that value iteration via Bellman updates is a contraction in $$\gamma$$, we know that value iteration converges, and convergence happens when we have reached a fixed point that satisfies $$V^* = BU^*$$.
 
-Let's see a few updates of value iteration in practice by revisiting our racecar MDP from earlier, introducing a discount factor of $$\gamma = 0.5$$:
+Let's see a few updates of value iteration in practice by revisiting our racecar MDP from earlier, introducing a discount factor of $$\gamma = 0.8$$:
 
 <img src="{{ site.baseurl }}/assets/images/race-car.png" alt="Race Car MDP" />
 
@@ -57,10 +57,10 @@ We begin value iteration by initializing all $$V_0(s) = 0$$:
 In our first round of updates, we can compute $$\forall s \in S, \:\: V_1(s)$$ as follows:
 
 $$\begin{aligned}
-    V_1(cool) &= \max \{1 \cdot [1 + 0.5 \cdot 0],\:\: 0.5 \cdot [2 + 0.5 \cdot 0] + 0.5 \cdot [2 + 0.5 \cdot 0]\} \\
+    V_1(cool) &= \max \{1 \cdot [1 + 0.8 \cdot 0],\:\: 0.5 \cdot [2 + 0.8 \cdot 0] + 0.5 \cdot [2 + 0.8 \cdot 0]\} \\
     &= \max \{1, 2\} \\
     &= \boxed{2} \\
-    V_1(warm) &= \max \{0.5 \cdot [1 + 0.5 \cdot 0] + 0.5 \cdot [1 + 0.5 \cdot 0],\:\: 1 \cdot [-10 + 0.5 \cdot 0]\} \\
+    V_1(warm) &= \max \{0.5 \cdot [1 + 0.8 \cdot 0] + 0.5 \cdot [1 + 0.8 \cdot 0],\:\: 1 \cdot [-10 + 0.8 \cdot 0]\} \\
     &= \max \{1, -10\} \\
     &= \boxed{1} \\
     V_1(overheated) &= \max \{\} \\
@@ -75,12 +75,12 @@ $$\begin{aligned}
 Similarly, we can repeat the procedure to compute a second round of updates with our newfound values for $$U_1(s)$$ to compute $$V_2(s)$$:
 
 $$\begin{aligned}
-    V_2(cool) &= \max \{1 \cdot [1 + 0.5 \cdot 2],\:\: 0.5 \cdot [2 + 0.5 \cdot 2] + 0.5 \cdot [2 + 0.5 \cdot 1]\} \\
-    &= \max \{2, 2.75\} \\
-    &= \boxed{2.75} \\
-    V_2(warm) &= \max \{0.5 \cdot [1 + 0.5 \cdot 2] + 0.5 \cdot [1 + 0.5 \cdot 1],\:\: 1 \cdot [-10 + 0.5 \cdot 0]\} \\
-    &= \max \{1.75, -10\} \\
-    &= \boxed{1.75} \\
+    V_2(cool) &= \max \{1 \cdot [1 + 0.8 \cdot 2],\:\: 0.5 \cdot [2 + 0.8 \cdot 2] + 0.5 \cdot [2 + 0.8 \cdot 1]\} \\
+    &= \max \{2.6, 3.2\} \\
+    &= \boxed{3.2} \\
+    V_2(warm) &= \max \{0.5 \cdot [1 + 0.8 \cdot 2] + 0.5 \cdot [1 + 0.8 \cdot 1],\:\: 1 \cdot [-10 + 0.8 \cdot 0]\} \\
+    &= \max \{2.2, -10\} \\
+    &= \boxed{2.2} \\
     V_2(overheated) &= \max \{\} \\
     &= \boxed{0}
 \end{aligned}$$
@@ -89,7 +89,7 @@ $$\begin{aligned}
 |---|---|---|---|
 | $$V_0$$ | 0 | 0 | 0 |
 | $$V_1$$ | 2 | 1 | 0 |
-| $$V_2$$ | 2.75 | 1.75 | 0 |
+| $$V_2$$ | 3.2 | 2.2 | 0 |
 
 It's worthwhile to observe that $$V^*(s)$$ for any terminal state must be 0, since no actions can ever be taken from any terminal state to reap any rewards.
 
