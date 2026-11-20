@@ -11,8 +11,6 @@ _By Nikhil Sharma, Josh Hug, Jacky Liang, and Henry Zhu._
 
 _Additional Contributions by Regina Wang, Peyrin Kao, Matei Gardea, Danial Toktarbayev, Catherine Chu, Samantha Huang, Saathvik Selvan, Pranav Muralikrishnan, and [Wesley Zheng](https://wkaiz.github.io)._
 
-_Website Established By [Wesley Zheng](https://wkaiz.github.io)._
-
 _Special Thanks to Ashley Chiu._
 
 
@@ -25,9 +23,9 @@ This PDF is automatically generated each time there is a [correction](#correctio
 
 ## Corrections
 
-As of the Summer 2025 semester, this textbook is still being actively maintained and updated.
+As of the Fall 2026 semester, this textbook is still being actively maintained and updated by [Wesley](https://wkaiz.github.io).
 
-If you see any parts that needs to be corrected, please open a Github issue [here](https://github.com/BerkeleyAI/textbook/issues).
+If you see any parts that needs to be corrected, please open a Github issue [here](https://github.com/BerkeleyAI/textbook/issues) or email [Wesley](mailto:wzheng0302@berkeley.edu).
 
 ## Source and Changelog
 
